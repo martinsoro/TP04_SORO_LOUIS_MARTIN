@@ -5,6 +5,7 @@
  */
 package comptebancaire.modeles;
 
+
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +14,7 @@ import javax.persistence.Id;
 
 /**
  *
- * @author louis-martin
+ * @author Louis-martin
  */
 @Entity
 public class CompteBancaire implements Serializable {
@@ -21,23 +22,23 @@ public class CompteBancaire implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    private String firstName;
-    private String lastName; 
-    private String accountNumber;
-    private double balance;
+    private Long id;
+        private String firstName,lastName,accountNumber;
+        private double balance;
 
-   
-    public CompteBancaire(){
-        
+    public CompteBancaire() {
     }
-        
-    public CompteBancaire(final String login, final String lastname, final String firstname) {
+    /*public CompteBancaire(String firstName, String lastName, String accountNumber, String balance) {
+    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }*/
+    public CompteBancaire(String firstName, String lastName, String accountNumber, double balance) {
+        this.firstName = firstName;
         this.lastName = lastName;
         this.accountNumber = accountNumber;
-        this.firstName = firstName;
         this.balance = balance;
     }
+
+    
 
     public String getFirstName() {
         return firstName;
@@ -45,14 +46,6 @@ public class CompteBancaire implements Serializable {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getLastName() {
@@ -78,14 +71,20 @@ public class CompteBancaire implements Serializable {
     public void setBalance(double balance) {
         this.balance = balance;
     }
-    
-    
-   
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) id;
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -96,7 +95,7 @@ public class CompteBancaire implements Serializable {
             return false;
         }
         CompteBancaire other = (CompteBancaire) object;
-        if (this.id != other.id) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -104,7 +103,7 @@ public class CompteBancaire implements Serializable {
 
     @Override
     public String toString() {
-        return "comptebancaire.modeles.CompteBancaire[ id=" + id + " ]";
+        return "CompteBancaire.CompteBancaire[ id=" + id + " ]";
     }
     
 }
